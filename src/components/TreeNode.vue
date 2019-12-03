@@ -1,18 +1,58 @@
 <template>
-  <div class="tree-node" :class="[data.active ? store.activatedClass : '', data.open ? store.openedClass : '', data.class]" :style="data.style" :id="data._id">
-      <slot v-if="!isRoot" name="node-inner-back" :styleObj="innerBackStyle" :data="data" :store="store" :vm="vm">
-          <div class="tree-node-inner-back" :style="[innerBackStyle, data.innerBackStyle]" :class="[data.innerBackClass]">
-              <div class="tree-node-inner" :style="[data.innerStyle]" :class="[data.innerClass]">
-                  <slot :data="data" :store="store" :vm="vm"></slot>
-              </div>
-          </div>
-      </slot>
-      <transition :name="store.childrenTransitionName">
-          <div class="tree-node-children" v-if="childrenVisible">
-              <TreeNode v-for="child in data.children" :key="child._id" :data="child" :store="store" :level="childrenLevel"><template slot-scope="props"><slot :data="props.data" :store="props.store" :vm="props.vm"></slot></template><template v-if="store.customInnerBack" slot="node-inner-back" slot-scope="props"><slot name="node-inner-back" :styleObj="props.styleObj" :data="props.data" :store="props.store" :vm="props.vm"></slot></template></TreeNode>
-          </div>
-      </transition>
-  </div>
+  <div
+    class="tree-node"
+    :class="[data.active ? store.activatedClass : '', data.open ? store.openedClass : '', data.class]"
+    :style="data.style"
+    :id="data._id"
+  >
+    <slot
+      v-if="!isRoot"
+      name="node-inner-back"
+      :styleObj="innerBackStyle"
+      :data="data"
+      :store="store"
+      :vm="vm"
+    >
+      <div
+        class="tree-node-inner-back"
+        :style="[innerBackStyle, data.innerBackStyle]"
+        :class="[data.innerBackClass]"
+      >
+        <div
+          class="tree-node-inner"
+          :style="[data.innerStyle]"
+          :class="[data.innerClass]"
+        >
+          <slot
+            :data="data"
+            :store="store"
+            :vm="vm">
+          </slot>
+        </div>
+      </div>
+    </slot>
+    <transition :name="store.childrenTransitionName">
+      <div
+        v-if="childrenVisible"
+        class="tree-node-children"
+      >
+        <TreeNode
+          v-for="child in data.children"
+          :key="child._id"
+          :data="child"
+          :store="store"
+          :level="childrenLevel"
+        >
+          <template slot-scope="props">
+            <slot :data="props.data" :store="props.store" :vm="props.vm"/>
+          </template>
+          <template v-if="store.customInnerBack" slot="node-inner-back" slot-scope="props">
+            <slot name="node-inner-back" :styleObj="props.styleObj" :data="props.data" :store="props.store" :vm="props.vm"/>
+          </template>
+        </TreeNode>
+      </div>
+    </transition>
+    </div>
 </template>
 <script>
 import * as th from 'tree-helper'
