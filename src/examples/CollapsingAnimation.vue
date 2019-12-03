@@ -1,12 +1,12 @@
 <!-- this is an example -->
 <!-- the collapsing animation will cause bug -->
-<template lang="pug">
-div
-  h2 Collapse Animation
-  Tree(:data="originalData" draggable crossTree ref="tree1" @change="tree1Change" @drag="ondrag" @drop="ondrop")
-    div(slot-scope="{data, store}")
-      b(v-if="data.children && data.children.length" @click="store.toggleOpen(data)") {{data.open ? '-' : '+'}}&nbsp;
-      span {{data.text}}
+<template>
+  <div>
+      <h2>Collapse Animation</h2>
+      <Tree :data="originalData" draggable="draggable" crossTree="crossTree" ref="tree1" @change="tree1Change" @drag="ondrag" @drop="ondrop">
+          <div slot-scope="{data, store}"><b v-if="data.children &amp;&amp; data.children.length" @click="store.toggleOpen(data)">{{data.open ? '-' : '+'}}&nbsp;</b><span>{{data.text}}</span></div>
+      </Tree>
+  </div>
 </template>
 
 <script>

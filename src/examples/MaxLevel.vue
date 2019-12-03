@@ -1,11 +1,11 @@
 <!-- this is an example -->
-<template lang="pug">
-div
-  h2 Max Level <input v-model="maxLevel" type="number" />
-  Tree(:data="originalData" draggable crossTree ref="tree1" @drag="ondrag")
-    div(slot-scope="{data, store}")
-      b(v-if="data.children && data.children.length" @click="store.toggleOpen(data)") {{data.open ? '-' : '+'}}&nbsp;
-      span {{data.text}}-droppable:{{data.droppable}}
+<template>
+  <div>
+      <h2>Max Level <input v-model="maxLevel" type="number" /></h2>
+      <Tree :data="originalData" draggable="draggable" crossTree="crossTree" ref="tree1" @drag="ondrag">
+          <div slot-scope="{data, store}"><b v-if="data.children &amp;&amp; data.children.length" @click="store.toggleOpen(data)">{{data.open ? '-' : '+'}}&nbsp;</b><span>{{data.text}}-droppable:{{data.droppable}}</span></div>
+      </Tree>
+  </div>
 </template>
 
 <script>

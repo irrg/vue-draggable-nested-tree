@@ -1,10 +1,14 @@
-<template lang="pug">
-.he-tree.tree
-  TreeNode(:data="rootData" :store="store")
-    template(slot-scope="props")
-      slot(:data="props.data" :store="store" :vm="props.vm")
-    template(v-if="customInnerBack" slot="node-inner-back" slot-scope="props")
-      slot(name="node-inner-back" :styleObj="props.styleObj" :data="props.data" :store="props.store" :vm="props.vm")
+<template>
+  <div class="he-tree tree">
+      <TreeNode :data="rootData" :store="store">
+        <template slot-scope="props">
+          <slot :data="props.data" :store="store" :vm="props.vm"/>
+        </template>
+        <template v-if="customInnerBack" slot="node-inner-back" slot-scope="props">
+          <slot name="node-inner-back" :styleObj="props.styleObj" :data="props.data" :store="props.store" :vm="props.vm"/>
+        </template>
+      </TreeNode>
+  </div>
 </template>
 
 <script>

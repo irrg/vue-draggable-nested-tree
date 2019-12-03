@@ -1,10 +1,11 @@
 <!-- this is an example -->
-<template lang="pug">
-#app
-  BaseTree.mr
-  MaxLevelTree.mr
-  CollapsingAnimation.mr
-  Empty.mr
+<template>
+  <div id="app">
+      <BaseTree class="mr"/>
+      <MaxLevelTree class="mr"/>
+      <CollapsingAnimation class="mr"/>
+      <Empty class="mr"/>
+  </div>
 </template>
 
 <script>
@@ -14,15 +15,12 @@ import CollapsingAnimation from '@/examples/CollapsingAnimation'
 import Empty from '@/examples/Empty'
 
 export default {
-  components: {BaseTree, MaxLevelTree, CollapsingAnimation, Empty},
-  // data() {
-  //   return {}
-  // },
-  // computed: {},
-  // watch: {},
-  // methods: {},
-  // created() {},
-  // mounted() {},
+  components: {
+    BaseTree,
+    MaxLevelTree,
+    CollapsingAnimation,
+    Empty
+  }
 }
 </script>
 
